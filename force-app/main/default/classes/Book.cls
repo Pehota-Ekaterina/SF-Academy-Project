@@ -19,8 +19,10 @@ public with sharing class Book {
             Integer numberPartLength = 5;
             String letterPart;
             Integer letterPartLength = 3;
+            String bookId = book.Id;
 
-            for (String symbol : book.Id) {
+            for (Integer i = 0; i < bookId.Length(); i++) {
+                String symbol = bookId.substring(i, i + 1);
                 if (numberPartLength > 0 && isNumber(symbol)) {
                     numberPart += symbol;
                     numberPartLength--;
@@ -30,7 +32,7 @@ public with sharing class Book {
                 }
             }
 
-            book.Serial_number__c = letterPart.substring(0, 2) + '-' + numberPart.substring(0, 1) + '-' + letterPart.substrinf(2) + '-' + numberPart.substring(1);
+            book.Serial_number__c = letterPart.substring(0, 2) + '-' + numberPart.substring(0, 1) + '-' + letterPart.substring(2) + '-' + numberPart.substring(1);
         }
     }
 
