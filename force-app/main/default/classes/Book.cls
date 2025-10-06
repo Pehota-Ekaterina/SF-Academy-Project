@@ -15,9 +15,9 @@ public with sharing class Book {
                 continue;
             }
 
-            String numberPart;
+            String numberPart = '';
             Integer numberPartLength = 5;
-            String letterPart;
+            String letterPart = '';
             Integer letterPartLength = 3;
             String bookId = book.Id;
 
