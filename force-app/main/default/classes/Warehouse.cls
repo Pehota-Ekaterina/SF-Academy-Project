@@ -15,8 +15,5 @@ public with sharing class Warehouse {
                 warehouse.Number_of_books__c = warehouse.Books__r.size();
             }
         }
-        
     }
-
-
 }
