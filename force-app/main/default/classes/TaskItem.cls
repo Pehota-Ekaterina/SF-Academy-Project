@@ -1,9 +1,9 @@
 public with sharing class TaskItem {
-    String id;
-    String title;
-    String description;
-    Integer priority;
-    Boolean isCompleted;
+    private String id;
+    private String title;
+    private String description;
+    private Integer priority;
+    private Boolean isCompleted;
 
     public TaskItem(String idTask, String titleTask, String descriptionTask, Integer priorityTask) {
         this.id = idTask;

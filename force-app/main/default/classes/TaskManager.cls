@@ -1,50 +1,37 @@
 public with sharing class TaskManager {
-    static List<TaskItem> tasksList = new List<TaskItem>();
-
-    public static void addTask(TaskItem task) {
-        tasksList.add(task);
+    public static void addTask(Task__c task) {
+        insert task;
     }
 
-    public static List<TaskItem> getAllTasks() {
-        return tasksList;
+    public static List<Task__c> getAllTasks() {
+        return [SELECT Id, Name, Priority__c, Description__c, IsCompleted__c FROM Task__c];
     }
 
-    public static List<TaskItem> getPendingTasks() {
-        List<TaskItem> tasksListFilter = new List<TaskItem>();
-        for (TaskItem task : tasksList) {
-            if (task.getIsCompleted() == false) {
-                tasksListFilter.add(task);
-            }
-        }
-        return tasksListFilter;
+    public static List<Task__c> getPendingTasks() {
+        return [
+            SELECT Id, Name, Priority__c, Description__c, IsCompleted__c 
+            FROM Task__c
+            WHERE IsCompleted__c = false
+        ];
     }
 
-    public static List<TaskItem> getCompletedTasks() {
-        List<TaskItem> tasksListFilter = new List<TaskItem>();
-        for (TaskItem task : tasksList) {
-            if (task.getIsCompleted()) {
-                tasksListFilter.add(task);
-            }
-        }
-        return tasksListFilter;
+    public static List<Task__c> getCompletedTasks() {
+        return [
+            SELECT Id, Name, Priority__c, Description__c, IsCompleted__c 
+            FROM Task__c
+            WHERE IsCompleted__c = true
+        ];
     }
 
-    public static List<TaskItem> findTasksByPriority(Integer priority) {
-        List<TaskItem> tasksListFilter = new List<TaskItem>();
-        for (TaskItem task : tasksList) {
-            if (task.getPriority() == priority) {
-                tasksListFilter.add(task);
-            }
-        }
-        return tasksListFilter;
+    public static List<Task__c> findTasksByPriority(Integer priority) {
+        return [
+            SELECT Id, Name, Priority__c, Description__c, IsCompleted__c 
+            FROM Task__c
+            WHERE Priority__c = :priority
+        ];
     }
 
-    public static TaskItem findTaskByTitle(String title) {
-        for (TaskItem task : tasksList) {
-            if (task.getTitle() == title) {
-                return task;
-            }
-        }
-        return NULL;
+    public static List<List<Task__c>> findTaskByTitle(String title) {
+        return [FIND :title IN NAME FIELDS RETURNING Task__c];
     }
 }
