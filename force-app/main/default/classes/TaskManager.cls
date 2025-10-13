@@ -34,4 +34,14 @@ public with sharing class TaskManager {
     public static List<List<Task__c>> findTaskByTitle(String title) {
         return [FIND :title IN NAME FIELDS RETURNING Task__c];
     }
+
+    @future
+    public static void notifyTaskCompletion(Id taskId) {
+        Task__c task = [SELECT Id, Name From Task__c WHERE Id = :taskId];
+        System.debug('Notification: Task completed -> ' + task.Name);
+    }
+
+    public static void updateTaskPriority(List<Id> taskIds) {
+        System.enqueueJob(new TaskPriorityUpdater(taskIds));
+    }
 }

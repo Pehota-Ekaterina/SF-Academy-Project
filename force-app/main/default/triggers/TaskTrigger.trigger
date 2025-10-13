@@ -10,7 +10,8 @@ trigger TaskTrigger on Task__C (after insert, after update) {
         for (Task__c task : Trigger.new) {
             Task__c oldTask = Trigger.oldMap.get(task.Id);
             if (task.IsCompleted__c && !oldTask.IsCompleted__c) {
-                System.debug('Task completed: ' + task.Name);
+                //System.debug('Task completed: ' + task.Name);
+                TaskManager.notifyTaskCompletion(task.Id);
             }
         }
     }
