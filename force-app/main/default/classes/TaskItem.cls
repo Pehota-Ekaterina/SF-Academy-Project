@@ -1,9 +1,11 @@
 public with sharing class TaskItem {
-    String id;
-    String title;
-    String description;
-    Integer priority;
-    Boolean isCompleted;
+    private String id;
+    private String title;
+    private String description;
+    private Integer priority;
+    private Boolean isCompleted;
+    private Date createdDate;
+    private Boolean isArchived;
 
     public TaskItem(String idTask, String titleTask, String descriptionTask, Integer priorityTask) {
         this.id = idTask;
@@ -11,6 +13,8 @@ public with sharing class TaskItem {
         this.description = descriptionTask;
         this.priority = priorityTask;
         this.isCompleted = false;
+        this.createdDate = Date.today();
+        this.isArchived = false;
     }
 
     public void markAsCompleted() {
