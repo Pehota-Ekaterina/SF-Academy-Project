@@ -5,7 +5,7 @@ public class PrivateContactClass extends TypeClass {
     public PrivateContactClass(Integer cardNumber, Contact contactRecord) {
         this.cardNumber = cardNumber;
         this.contactRecord = contactRecord;
-        this.contactType = getContactType(cardNumber);
+        this.contactType = setContactType(cardNumber);
     }
 
     public Integer getCardNumber() {
@@ -15,7 +15,7 @@ public class PrivateContactClass extends TypeClass {
         return ContactRecord;
     }
 
-    private String getContactType(Integer cardNumber) {
+    private String setContactType(Integer cardNumber) {
         Integer sameNumber = 0;
 
         List<Integer> cartNumberLists = new List<Integer>();
