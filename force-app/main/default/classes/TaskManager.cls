@@ -44,4 +44,8 @@ public with sharing class TaskManager {
     public static void updateTaskPriority(List<Id> taskIds) {
         System.enqueueJob(new TaskPriorityUpdater(taskIds));
     }
+
+    public static Decimal getTaskScore(Task__c task, ITaskScoreStrategy strategy) {
+        return strategy.calculateScore(task);
+    }
 }
