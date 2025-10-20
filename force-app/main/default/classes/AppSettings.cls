@@ -1,5 +1,5 @@
 public class AppSettings {
-    private static final AppSettings instance = new AppSettings();
+    private static AppSettings instance = null;
     private Integer defaultPriority; 
     private Integer maxTasksPerUser;
 
@@ -10,6 +10,9 @@ public class AppSettings {
     }
 
     public static AppSettings getInstance() {
+        if (instance == null) {
+            instance = new AppSettings();
+        }
         return instance;
     }
 
