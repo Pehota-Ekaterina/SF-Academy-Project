@@ -44,4 +44,18 @@ public with sharing class TaskManager {
     public static void updateTaskPriority(List<Id> taskIds) {
         System.enqueueJob(new TaskPriorityUpdater(taskIds));
     }
+
+    public static Decimal getTaskScore(Task__c task, ITaskScoreStrategy strategy) {
+        return strategy.calculateScore(task);
+    }
+
+    public static Task__c getById(Id taskId) {
+        return [SELECT Id, Name, Priority__c, IsCompleted__c FROM Task__c WHERE Id = :taskId];
+    }
+
+    public static void completeTask(Task__c task) {
+        task.IsCompleted__c = true;
+        update task;
+        System.debug('Task updated');
+    }
 }
