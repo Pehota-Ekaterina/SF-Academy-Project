@@ -1,0 +1,56 @@
+public class ContactWebService {
+    public static HttpResponse getContact(String firstName, String lastName) {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(
+            'callout:SalesforceNamedCredential/services/apexrest/Contact' 
+            + '/FirstName=' + firstName + '/LastName=' + lastName);
+        request.setMethod('GET');
+        HttpResponse response = http.send(request);
+        
+        List<Contact> contactList = new List<Contact>();
+        if (response.getStatusCode() == 200) {
+            contactList = (List<Contact>)JSON.deserialize(response.getBody(), List<Contact>.class); 
+			System.debug(contactList);
+        }
+        
+        return response;
+    }
+    
+    public static HttpResponse deleteContact(String firstName, String lastName) {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(
+            'callout:SalesforceNamedCredential/services/apexrest/Contact' 
+            + '/FirstName=' + firstName + '/LastName=' + lastName);
+        request.setMethod('DELETE');
+        HttpResponse response = http.send(request);
+        
+        if (response.getStatusCode() == 200) {
+            System.debug(response.getBody());
+        }
+       
+        return response;
+    }
+    
+    public static HttpResponse addContact(String firstName, String lastName) {
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('callout:SalesforceNamedCredential/services/apexrest/Contact');
+        request.setMethod('POST');
+        request.setHeader('Content-Type', 'application/json;charset=UTF-8');
+        Map<String, Object> body = new Map<String, Object>();
+        body.put('FirstName', firstName);
+        body.put('LastName', lastName);
+        request.setBody(JSON.serialize(body));  
+        HttpResponse response = http.send(request);
+
+        if(response.getStatusCode() != 201) {
+            System.debug('The status code returned was not expected: ' +
+                response.getStatusCode() + ' ' + response.getStatus());
+        } else {
+            System.debug(response.getBody());
+        }
+        return response;
+    }
+}
