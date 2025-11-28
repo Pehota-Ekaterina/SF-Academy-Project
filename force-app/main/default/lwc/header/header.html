@@ -1,0 +1,111 @@
+<template>
+    <lightning-card> 
+
+        <div class="slds-m-horizontal_xx-large">
+            <div class="slds-m-horizontal_xx-large">
+                <div class="slds-m-horizontal_xx-large">
+                    <div class="slds-m-horizontal_xx-large">
+                        <div class="slds-grid slds-align-center slds-grid_vertical-align-center">       
+                            <div class="slds-col slds-size_4-of-12"> 
+                                <div class="slds-m-vertical_medium slds-m-horizontal_xx-large">
+                                    <div class="slds-text-heading_large slds-m-horizontal_xx-large">
+                                        <img src={aliexpressLogo} alt="Logo" class="slds-m-left_small slds-m-right_medium" style="height:40px;">
+                                        AliExpress
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <div class="slds-m-vertical_medium">
+                                    <lightning-input
+                                        name="enter-search"
+                                        type="search"
+                                        placeholder="Search ..."
+                                    ></lightning-input>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_4-of-12">
+                                <div class=" slds-m-bottom_x-large slds-m-top_xx-large slds-m-horizontal_xx-large">
+                                    <lightning-button-icon 
+                                        icon-name="utility:cart"  
+                                        variant="border-filled" 
+                                        alternative-text="cart"
+                                    ></lightning-button-icon>
+                                    <lightning-button-icon 
+                                        class="slds-m-left_medium"
+                                        icon-name="utility:profile_alt"  
+                                        variant="border-filled" 
+                                        alternative-text="cart"
+                                    ></lightning-button-icon>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-m-horizontal_xx-large">
+            <div class="slds-m-horizontal_xx-large">
+                <div class="slds-m-horizontal_xx-large">
+                    <div class="slds-m-horizontal_xx-large">
+                        <div class="slds-grid slds-align-center slds-m-horizontal_xx-large">
+                            <div class="slds-col slds-size_3-of-12">
+                                <div class="slds-m-left_xx-large slds-m-bottom_x-large">
+                                    <lightning-button-menu
+                                        alternative-text="All Categories"
+                                        label="All categories" 
+                                        onclick={handleClick}>
+                                        <lightning-menu-item value="electronics" label="Electronics"></lightning-menu-item>
+                                        <lightning-menu-item value="clothing" label="Clothing"></lightning-menu-item>
+                                        <lightning-menu-item value="home_garden" label="Home and Garden"></lightning-menu-item>
+                                        <lightning-menu-item value="toys" label="Toys and Hobbies"></lightning-menu-item>
+                                        <lightning-menu-item value="beauty" label="Beauty"></lightning-menu-item>
+                                    </lightning-button-menu>
+                                </div>
+                            </div>
+
+                            <div class="slds-col slds-size_3-of-12">
+                                <div class="slds-m-bottom_x-large slds-m-right_xx-large">
+                                    <lightning-button 
+                                        variant="base" 
+                                        label="Sale" 
+                                        icon-name="utility:qualifications"
+                                        icon-position="left"
+                                        onclick={handleClick} 
+                                    ></lightning-button>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_3-of-12">
+                                <div class="slds-m-bottom_x-large slds-m-right_xx-large">
+                                    <lightning-button 
+                                        variant="base" 
+                                        label="Bestseller" 
+                                        icon-name="utility:warranty_term"
+                                        icon-position="left"
+                                        onclick={handleClick} 
+                                    ></lightning-button>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_3-of-12">
+                                <div class="slds-m-bottom_x-large slds-m-right_xx-large">
+                                    <lightning-button
+                                        variant="base"
+                                        label="More"
+                                        icon-name="utility:switch"
+                                        icon-position="right"
+                                        onclick={handleClick}
+                                    >
+                                    </lightning-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+   
+    </lightning-card> 
+</template>
