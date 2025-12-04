@@ -1,0 +1,55 @@
+lightning-card {
+
+    --slds-c-card-color-background: rgba(255, 51, 0);
+}
+
+div {
+    color: white;
+}
+
+lightning-input {
+    --slds-c-input-shadow-focus: 0 0 5px #000000;
+}
+
+lightning-button-icon {
+    --slds-c-button-shadow-focus: 0;
+}
+
+lightning-button-menu {
+
+    --slds-c-button-text-color: black;
+    --slds-c-button-text-color-active: black;
+    --slds-c-button-text-color-hover: black;
+
+    --slds-c-button-color-border: black;
+    --slds-c-button-color-border-active: black;
+    --slds-c-button-color-border-hover: black;
+
+    --slds-c-button-color-border: black;
+    --slds-c-button-color-border-active: black;
+    --slds-c-button-color-border-hover: black;
+
+    --slds-c-button-brand-color-background-active: black;
+    
+    --slds-c-button-shadow-focus: 0;
+    
+}
+
+lightning-button {
+
+    --slds-c-button-text-color: white;
+    --slds-c-button-text-color-active: white;
+    --slds-c-button-text-color-hover: white;
+
+    --slds-c-button-color-border-active: white;
+    --slds-c-button-brand-color-background-active: white;
+
+    --slds-c-button-shadow-focus: 0;
+
+    
+    --slds-c-button-sizing-border: 5px;
+    
+    --slds-c-button-radius-border: 0.5rem;
+
+}
+
