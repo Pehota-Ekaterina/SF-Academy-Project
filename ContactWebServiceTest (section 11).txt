@@ -1,0 +1,33 @@
+@IsTest
+private class ContactWebServiceTest {
+    @IsTest
+    private static void testGetContact() {      
+        Test.setMock(HttpCalloutMock.class, new ContactHttpCalloutMock());
+        Test.startTest();
+        HttpResponse response = ContactWebService.getContact('Jon', 'Doy');
+        Test.stopTest();
+        
+        System.assertEquals(200, response.getStatusCode());
+    }
+    
+    @IsTest
+    private static void testDeleteContact() {
+        Test.setMock(HttpCalloutMock.class, new ContactHttpCalloutMock());
+        Test.startTest();
+        HttpResponse response = ContactWebService.deleteContact('Jon', 'Doy');
+        Test.stopTest();
+        
+        System.assertEquals(200, response.getStatusCode());
+    }
+    
+    @IsTest
+    private static void testAddContact() {
+        Test.setMock(HttpCalloutMock.class, new ContactHttpCalloutMock());
+        Test.startTest();
+        HttpResponse response = ContactWebService.addContact('Jon', 'Doy');
+        Test.stopTest();
+        
+        System.assertEquals(200, response.getStatusCode());
+        
+    }
+}

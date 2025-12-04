@@ -1,0 +1,9 @@
+@IsTest
+global class ContactHttpCalloutMock implements HttpCalloutMock {
+    global HTTPResponse respond(HTTPRequest request) {
+        HttpResponse response = new HttpResponse();
+        response.setBody('[{"FirstName": "Jon", "LastName": "Doy"}]');
+        response.setStatusCode(200);
+        return response;
+    }
+}
