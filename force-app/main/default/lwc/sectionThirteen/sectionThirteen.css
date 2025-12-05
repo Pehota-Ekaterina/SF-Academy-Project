@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+}
+
+.time-zone-item {
+    flex: 1;
+    padding: 15px;
+    margin: 20px;
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.item-button {
+    flex: 1;
+    padding: 15px;
+    margin: 0 200px;
+    text-align: center;
+}
+
+p {
+    font-weight: bold;
+}

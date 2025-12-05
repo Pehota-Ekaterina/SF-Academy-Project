@@ -1,0 +1,176 @@
+<template>
+    <lightning-card title="Time zone">
+        <div class="container">
+            <div class="time-zone-item">
+                <p>Minsk</p>    
+                <span>{timeMinsk}</span>
+            </div>
+            <div class="time-zone-item">
+                <p>Warsaw</p> 
+                <span>{timeWarsaw}</span>
+            </div>
+            <div class="time-zone-item">
+                <p>London</p> 
+                <span>{timeLondon}</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <button 
+                class="item-button" 
+                style="background-color: aliceblue;"
+                onclick={handleDefaultButton}
+            >Default</button>
+            <button 
+                class="item-button" 
+                style="background-color: rgb(131, 181, 228);"
+                onclick={handleBlueButton}
+            >Blue</button>
+            <button 
+                class="item-button" 
+                style="background-color: rgb(153, 153, 153);"
+                onclick={handleGreyButton}
+            >Grey</button>
+            <button 
+                class="item-button" 
+                style="background-color: white;"
+                onclick={handleWhiteButton}
+            >White</button>
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Flip coin">
+        <lightning-button 
+            label="flip a coin"
+            onclick={flipCoin}
+        ></lightning-button>
+        
+        <div if:true={isTossing} class="slds-m-top_medium">
+            <lightning-spinner size="small"></lightning-spinner>
+        </div>
+
+        <p>{resultCoin}</p>
+    </lightning-card>
+
+    <lightning-card title="Comper two objects">
+        <div>
+            <div>
+                <p>Object1</p>
+                <lightning-input
+                    label="JSON Input"
+                    class="object1">
+                </lightning-input>
+            </div>
+            <div>
+                <p>Object2</p>
+                <lightning-input 
+                    label="JSON Input"
+                    class="object2">
+                </lightning-input>
+            </div>
+        </div>
+
+        <lightning-button
+            label="Comper Objects"
+            onclick={comperObjects}
+        ></lightning-button>
+
+        <template if:true={resultComper}>
+            <div>
+                <strong>Result:</strong>{resultComper}
+            </div>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Check phone number">
+        <div>
+            <div class="slds-box slds-box_x-small slds-theme_info slds-m-top_small">
+                <strong>Примеры допустимых форматов:</strong>
+                <ul class="slds-list_dotted slds-m-left_small slds-m-top_x-small">
+                    <li><code>+799 (99) 555 55 55</code></li>
+                    <li><code>+799 (99) 222-22-22</code></li>
+                    <li><code>+799 99 123 45 67</code></li>
+                    <li><code>799 99 123 45 67</code></li>
+                    <li><code>799(99)1234567</code></li>
+                </ul>
+            </div>
+            <lightning-input
+                label="Is it a phone number?"
+                class="input-phone"
+            ></lightning-input>
+        </div>
+        <lightning-button
+            label="check"    
+            onclick={checkPhoneNumber}
+        ></lightning-button>
+        <template if:true={resultCheckPhoneNumber}>
+            <div>
+                <strong>Result:</strong>{resultCheckPhoneNumber}
+            </div>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Object Manager">
+        <div class="slds-box slds-box_x-small slds-theme_info slds-m-top_small">
+            <h3 class="slds-text-heading_small">Current Object:</h3>
+            <pre>{objectJson}</pre>
+        </div>
+
+        <lightning-input
+            label="new attribute name"
+            value={attributeNameNew}
+            onchange={handleAttributeNewNameChange}
+        ></lightning-input>
+        <lightning-input
+            label="value (string, number, array, object)"
+            value={attributeValueNew}
+            onchange={handleAttributeValueChange}
+        ></lightning-input>
+        <lightning-button
+            label="Put"
+            onclick={putNewAttribute}
+        ></lightning-button>
+
+        <template if:true={resultPutNewAttr}>
+            <div>
+                <strong>{resultPutNewAttr}</strong>
+            </div>
+        </template>
+
+        <lightning-input
+            label="attribute name"
+            value={getAttributeName}
+            onchange={handleGetAttributeNameChange}
+        ></lightning-input>
+        <lightning-button
+            label="Get"
+            onclick={getAttributeValue}
+        ></lightning-button>
+
+        <template if:true={valueResult}>
+            <div>
+                <strong>{valueResult}</strong>
+            </div>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Find Contacs from Account name">
+        <lightning-input
+            label="Account name"
+            value={accountName}
+            onchange={handleAccountNameChange}
+        ></lightning-input>
+
+        <lightning-button 
+            label="find"
+            onclick={findContacts}
+        ></lightning-button>
+
+        <template if:true={findResult}>
+            <div class="slds-box slds-box_x-small slds-theme_info slds-m-top_small">
+                <h3 class="slds-text-heading_small">Contacts:</h3>
+                <pre>{contactsJson}</pre>
+            </div>
+        </template>
+    </lightning-card>
+</template>
