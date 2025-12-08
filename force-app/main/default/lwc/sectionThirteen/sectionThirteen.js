@@ -287,4 +287,44 @@ export default class SectionThirteen extends LightningElement {
     updateRecordsHandler(event) {
         this.visibleRecords = event.detail.records;
     }
+
+    @track firstParam = '';
+    @track secondParam = '';
+    @track resultComparison = null;
+
+    handleFirstParamChange(event) {
+        this.firstParam = event.target.value;
+    }
+
+    handleSecondParamChange(event) {
+        this.secondParam = event.target.value;
+    }
+
+    comparisonParams() {
+        const param1 = this.firstParam.trim();
+        const param2 = this.secondParam.trim();
+        this.resultComparison = null;
+
+        if (!param1 || !param2) {
+            this.resultComparison = 'Both parameters must be provided.';
+            return;
+        }
+
+         const isNumeric = (str) => !isNaN(str) && str !== '' && !isNaN(parseFloat(str));
+
+        const isNum1 = isNumeric(param1);
+        const isNum2 = isNumeric(param2);
+
+        if (isNum1 && isNum2) {
+            const num1 = parseFloat(param1);
+            const num2 = parseFloat(param2);
+            this.resultComparison = num1 >= num2 ? num1 : num2;
+            this.resultComparison = `Largest number -> ${this.resultComparison}`;
+        } else if (!isNum1 && !isNum2) {
+            this.resultComparison = param1.length >= param2.length ? param1 : param2;
+            this.resultComparison = `Longest text -> "${this.resultComparison}"`;
+        } else {
+            this.resultComparison = 'Error: Both parameters must be of the same type (both numbers or both text)';
+        }
+    }
 }

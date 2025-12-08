@@ -210,4 +210,35 @@
             </div>
         </template>
     </lightning-card>
+
+    <lightning-card title="Comparison">
+        <div>
+            <div>
+                <lightning-input
+                    label="First input param:"
+                    value={firstParam}
+                    onchange={handleFirstParamChange}
+                ></lightning-input>
+            </div>
+            <div>
+                <lightning-input 
+                    label="Second input param:"
+                    value={secondParam}
+                    onchange={handleSecondParamChange}
+                ></lightning-input>
+            </div>
+        </div>
+
+        <lightning-button
+            label="Comparison"
+            onclick={comparisonParams}
+        ></lightning-button>
+
+        <template if:true={resultComparison}>
+            <div>
+                <strong>Result:  </strong>{resultComparison}
+            </div>
+        </template>
+    </lightning-card>
+
 </template>
