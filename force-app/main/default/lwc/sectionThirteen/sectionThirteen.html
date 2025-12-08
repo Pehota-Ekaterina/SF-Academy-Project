@@ -45,7 +45,7 @@
             onclick={flipCoin}
         ></lightning-button>
         
-        <div if:true={isTossing} class="slds-m-top_medium">
+        <div if:true={isTossingCoin} class="slds-m-top_medium">
             <lightning-spinner size="small"></lightning-spinner>
         </div>
 
@@ -170,6 +170,43 @@
             <div class="slds-box slds-box_x-small slds-theme_info slds-m-top_small">
                 <h3 class="slds-text-heading_small">Contacts:</h3>
                 <pre>{contactsJson}</pre>
+            </div>
+        </template>
+    </lightning-card>
+
+    <lightning-card title="Pagination">
+        <lightning-input 
+            label="SOQL:"
+            value={soqlQuery}
+            onchange={handleSoqlQueryChange}
+        ></lightning-input>
+        <lightning-button
+            label="Search"
+            onclick={searchSOQL}
+        ></lightning-button>
+
+        <div if:true={isTossingSOQL} class="slds-m-top_medium">
+            <lightning-spinner size="small"></lightning-spinner>
+        </div>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-top_small">
+                {error}
+            </div>
+        </template>
+
+        <template if:true={records.length}>
+            <div class="slds-m-top_medium">
+                <h3 class="slds-text-heading_small">Found {records.length} record(s):</h3>
+                <lightning-datatable
+                    key-field="Id"
+                    data={visibleRecords}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </lightning-datatable>
+            </div>
+            <div slot="footer">
+                <c-pagination records={records} onupdate={updateRecordsHandler}></c-pagination>
             </div>
         </template>
     </lightning-card>

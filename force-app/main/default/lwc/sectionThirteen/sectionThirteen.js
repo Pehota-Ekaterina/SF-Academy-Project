@@ -1,5 +1,7 @@
 import { LightningElement, track } from 'lwc';
 import searchContactsByAccount from '@salesforce/apex/AccountContactService.searchContactsByAccount';
+import fetchRecords from '@salesforce/apex/SoqlController.fetchRecords';
+
 
 export default class SectionThirteen extends LightningElement {
     @track timeMinsk = '';
@@ -77,15 +79,15 @@ export default class SectionThirteen extends LightningElement {
     }
     
     @track resultCoin = '   ';
-    @track isTossing = false;
+    @track isTossingCoin = false;
 
     flipCoin() {
-        this.isTossing = true;
+        this.isTossingCoin = true;
         this.resultCoin = '';
 
         setTimeout(() => {
             this.resultCoin = Math.random() <0.5 ? 'heads' : 'tails';
-            this.isTossing = false;
+            this.isTossingCoin = false;
         }, 3000);
     }
 
@@ -235,5 +237,54 @@ export default class SectionThirteen extends LightningElement {
             this.contactsJson = '';
             alert(error.body.message || 'Searching error');
         }
+    }
+
+    @track soqlQuery = '';
+    @track isTossingSOQL = false;
+    @track records = [];
+    @track error = '';
+    @track visibleRecords = [];
+
+    handleSoqlQueryChange(event) {
+        this.soqlQuery = event.target.value;
+    }
+
+    async searchSOQL() {
+        const query = this.soqlQuery.trim();
+        if (!query) {
+            this.error = 'SOQL query must not be empty';
+            this.records = [];
+            return;
+        }
+
+        this.isTossingSOQL = true;
+        this.records = [];
+        this.error = '';
+
+        try {
+            const data = await fetchRecords({ soqlQuery: query });
+
+            if (data.length === 0) {
+                this.error = 'No records found.';
+                return;
+            }
+
+            this.columns = Object.keys(data[0]).map(fieldName => ({
+                label: fieldName,
+                fieldName: fieldName,
+                type: typeof data[0][fieldName] === 'string' ? 'text' : 'number'
+            }));
+
+            this.records = data;
+        } catch (err) {
+            this.error = err.body?.message || 'Unknown error';
+            console.error('SOQL Error:', err);
+        } finally {
+            this.isTossingSOQL = false;
+        }
+    }
+
+    updateRecordsHandler(event) {
+        this.visibleRecords = event.detail.records;
     }
 }
