@@ -52,7 +52,14 @@ export default class Pagination extends LightningElement {
     }
 
     pageNumberHandler(event) {
-        this.currentPage = Number(event.target.value);
+        const page = Number(event.target.value);
+        if (page < 1) {
+            this.currentPage = 1;
+        } else if (page > this.totalPage) {
+            this.currentPage = this.totalPage;
+        } else {
+            this.currentPage = page;
+        }
         this.updateRecords();
     }
 

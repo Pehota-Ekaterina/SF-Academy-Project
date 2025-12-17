@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-m-top_medium">
+        <lightning-datatable
+            key-field="Id"
+            data={visibleData}
+            columns={columns}
+            hide-checkbox-column="true"
+        ></lightning-datatable>
+
+        <div class="slds-m-top_large">
+            <c-pagination records={allRecords} onupdate={updateRecordsHandler}></c-pagination>
+        </div>
+    </div>
+</template>

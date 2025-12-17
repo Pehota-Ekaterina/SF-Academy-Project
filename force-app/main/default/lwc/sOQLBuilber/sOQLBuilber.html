@@ -1,0 +1,85 @@
+<template>
+    <lightning-card title="SOQL Builber">
+        <lightning-combobox
+            label="Object"
+            placeholder="Choose Object..."
+            value={selectedObject}
+            options={objectsList}
+            onchange={handleChangeObject}
+        ></lightning-combobox>
+
+        <template if:true={showFields}>
+            <lightning-dual-listbox 
+                label="Choose fields"
+                source-label="Available"
+                selected-label="Selected"
+                options={fieldsToChoose}
+                onchange={handleChangeFields}>
+            </lightning-dual-listbox>
+        </template>
+        
+        <template if:true={showCondition}>
+            <div>
+                <lightning-combobox
+                    label="Field"
+                    placeholder="Choose field..."
+                    value={valueConditionField}
+                    options={fieldsToChoose}
+                    onchange={handleChangeConditionField}
+                ></lightning-combobox>
+                <lightning-combobox
+                    label="Operator"
+                    placeholder="Choose operator..."
+                    value={valueConditionOperator}
+                    options={conditionOperatorsList}
+                    onchange={handleChangeConditionOperator}
+                ></lightning-combobox>
+                <lightning-input
+                    label="Value:"
+                    value={conditionValue}
+                    onchange={handleChangeConditionValue}
+                ></lightning-input>
+            </div>
+        </template>
+
+        <template if:true={showLimitOffset}>
+            <lightning-input
+                label="LIMIT"
+                type="number"
+                min="1"
+                value={limitValue}
+                onchange={handleChangeLimitValue}
+            ></lightning-input>
+            <lightning-input
+                label="OFFSET:"
+                type="number"
+                min="0"
+                value={offsetValue}
+                onchange={handleChangOffsetValue}
+            ></lightning-input>        
+        </template>
+
+        <template if:true={showQuery}>
+            <lightning-textarea
+                label="Generated Query:"
+                value={queryString}
+                readonly
+            ></lightning-textarea>
+            <lightning-button
+                variant="brand"
+                label="Execute Query"
+                onclick={loadQuery}
+            ></lightning-button>    
+        </template>
+
+        <template if:true={showQueryResult}>
+            <c-datatable-with-pagination all-records={data}></c-datatable-with-pagination>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-top_small">
+                {error}
+            </div>
+        </template>
+    </lightning-card>
+</template>

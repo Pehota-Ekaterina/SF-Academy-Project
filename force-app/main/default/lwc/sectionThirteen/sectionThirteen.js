@@ -310,7 +310,7 @@ export default class SectionThirteen extends LightningElement {
             return;
         }
 
-         const isNumeric = (str) => !isNaN(str) && str !== '' && !isNaN(parseFloat(str));
+        const isNumeric = (str) => !isNaN(str) && str !== '' && !isNaN(parseFloat(str));
 
         const isNum1 = isNumeric(param1);
         const isNum2 = isNumeric(param2);
