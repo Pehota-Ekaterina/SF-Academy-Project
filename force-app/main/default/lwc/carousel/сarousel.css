@@ -1,0 +1,13 @@
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 159, 95);
+
+}
+
+.out{
+    width: 100%;
+    height: 100%;
+}
